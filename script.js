@@ -97,7 +97,7 @@ async function getOpenWeatherData(endPoint, query) {
 }
 
 async function fetchCitySuggestions(query) {
-    const geoNamesApiUrl = `http://api.geonames.org/searchJSON?q=${query}&maxRows=10&featureClass=P&username=${geoNamesUsername}`;
+    const geoNamesApiUrl = `https://secure.geonames.org/searchJSON?q=${query}&maxRows=10&featureClass=P&username=${geoNamesUsername}`;
 
     try {
         const response = await fetch(geoNamesApiUrl);
