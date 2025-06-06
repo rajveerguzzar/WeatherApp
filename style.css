@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;0,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+    color: white;
+    font-weight: 600;
+}
+
+body {
+    background: url(assets/bg.jpeg);
+    width: 100%;
+    height: 100dvh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100dvh;
+    background: rgb(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+}
+
+.main-container {
+    width: 300px;
+    height: 495px;
+    z-index: 1;
+    background: linear-gradient(to top, rgb(0, 0, 0, 0.25), rgb(255, 255, 255, 0.25));
+    border-radius: 12px;
+    backdrop-filter: blur(100px);
+    padding: 20px;
+    position: relative;
+}
+
+.regular-txt {
+    font-weight: 400;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.city-input {
+    flex-grow: 1;
+    padding: 10px 16px;
+    padding-right: 45px;
+    /* Added right padding for the search icon */
+    padding-left: 16px;
+    /* Reset left padding to default */
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background: rgb(0, 0, 0, 0.15);
+    outline: none;
+    font-weight: 500;
+    transition: box-shadow 0.25s ease;
+}
+
+.city-input:focus {
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.city-input::placeholder {
+    color: rgb(255, 255, 255, 0.75);
+}
+
+.search-btn {
+    position: absolute;
+    right: 38px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.search-btn:hover {
+    opacity: 0.8;
+}
+
+.search-btn span {
+    font-size: 20px;
+    color: white;
+}
+
+.local-weather-btn {
+    background: rgb(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.local-weather-btn:hover {
+    background: rgb(0, 0, 0, 0.25);
+    box-shadow: 0 0 8px rgb(0, 0, 0);
+}
+
+.local-weather-btn span {
+    font-size: 20px;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    max-height: 170px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none;
+
+}
+
+.suggestions-list::-webkit-scrollbar{
+    width: 8px;
+}
+
+.suggestions-list li {
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+    font-weight: 400;
+    transition: background 0.2s ease;
+    font-size: 14px;
+}
+
+.suggestions-list li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.location-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.weather-summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-summary-img {
+    width: 120px;
+    height: 120px;
+}
+
+.weather-summary-info {
+    text-align: end;
+}
+
+.weather-condition-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.condition-item span {
+    font-size: 30px;
+}
+
+.forecast-items-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    padding-bottom: 12px;
+}
+
+.forecast-items-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.forecast-items-container::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0, 0.1);
+    border-radius: 99px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0, 0.15);
+    border-radius: 99px;
+}
+
+.forecast-item {
+    min-width: 70px;
+    background: rgb(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s background;
+}
+
+.forecast-item:hover {
+    background: rgb(255, 255, 255, 0.15);
+}
+
+.forecast-item-img {
+    width: 35px;
+    height: 35px;
+}
+
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 25%;
+}
+
+.section-message img {
+    height: 180px;
+    width: fit-content;
+}
+
+/* New Loading Effect Styles */
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    gap: 20px;
+}
+
+.loading-screen .ring {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    animation: ring 2s linear infinite;
+}
+
+@keyframes ring {
+    0% {
+        transform: rotate(0deg);
+        box-shadow: 1px 5px 2px #e65c00;
+    }
+
+    50% {
+        transform: rotate(180deg);
+        box-shadow: 1px 5px 2px #18b201;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        box-shadow: 1px 5px 2px #0456c8;
+    }
+}
+
+.loading-screen .ring:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, .3);
+}
+
+.loading-screen span {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+    animation: text 3s ease-in-out infinite;
+}
+
+@keyframes text {
+    50% {
+        color: #737373;
+    }
+}
